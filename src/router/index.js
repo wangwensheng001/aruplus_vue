@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
@@ -8,16 +7,53 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component:() => import('@/views/index/index')
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/market_quotations',
+    name: 'market_quotations',
+    component: () => import('@/views/market_quotations/market_quotations')
+  },
+  {
+    path: '/business',
+    name: 'business',
+    component: () => import('@/views/business/business')
+  },
+  {
+    path: '/treaty',
+    name: 'treaty',
+    component: () => import('@/views/treaty/treaty')
+  },
+  {
+    path: '/property',
+    name: 'property',
+    component: () => import('@/views/property/property')
+  },
+  {
+    path: '/my',
+    name: 'my',
+    component: () => import('@/views/my/my')
+  },
+  {
+    path: '/subscribe',
+    name: 'subscribe',
+    component: () => import('@/views/subscribe/subscribe')
+  },
+  {
+    path: '/mining',
+    name: 'mining',
+    component: () => import('@/views/mining/mining')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/login')
+  },
+  {
+    path: '/logon',
+    name: 'logon',
+    component: () => import('@/views/logon/logon')
+  },
 ]
 
 const router = new VueRouter({
