@@ -3,7 +3,9 @@
     <!-- 头部 -->
     <div class="top_nav_title">
       <div class="ind_title">AURO Global</div>
-      <router-link to="/"> <v-icon color="#000">mdi-earth</v-icon> </router-link>
+      <router-link to="/">
+        <v-icon color="#000">mdi-earth</v-icon>
+      </router-link>
     </div>
     <!-- 轮播图 -->
     <v-carousel
@@ -16,7 +18,7 @@
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
-        :src="item.src"
+        :src="item.cover"
       ></v-carousel-item>
     </v-carousel>
     <!-- 滚动提示 -->
@@ -30,14 +32,8 @@
         hide-delimiter-background
         hide-delimiters
       >
-        <v-carousel-item>
-          <span class="scroll_span">迪拜推出阿拉伯国家首个加密货币银行</span>
-        </v-carousel-item>
-        <v-carousel-item>
-          <span class="scroll_span">迪拜推出阿拉伯国家首个加密货币银行</span>
-        </v-carousel-item>
-        <v-carousel-item>
-          <span class="scroll_span">迪拜推出阿拉伯国家首个加密货币银行</span>
+        <v-carousel-item v-for="(item, i) in items" :key="i">
+          <span class="scroll_span">{{item.title}}</span>
         </v-carousel-item>
       </v-carousel>
       <div class="scroll_Y_icon">
@@ -123,27 +119,14 @@
 </template>
 
 <script>
-import { getBanners } from '@/api/home'
+import { getBanners } from "@/api/home";
 import MoneyList from "../../components/money_list.vue";
 import Tabbar from "../../components/tabbar.vue";
 export default {
   name: "Index",
   data() {
     return {
-      items: [
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-        },
-      ],
+      items: [],
       iconList: [
         {
           icons: require("@/assets/ind_icons/icon1.png"),
@@ -189,20 +172,23 @@ export default {
     };
   },
   created() {
-    // this.getBanners()
+    this.getBanners();
   },
   methods: {
     changeTab(a) {
       // console.log(a);
     },
     async getBanners() {
-      const {data} = await getBanners()
-      console.log(data);
-    }
+      const res = await getBanners({
+        c_id: "4,5",
+        lang: this.$store.state.lang,
+      });
+      this.items = res.list[5];
+    },
   },
   components: {
     "money-list": MoneyList,
-    'tabbar': Tabbar,
+    tabbar: Tabbar,
   },
 };
 </script>
@@ -217,10 +203,10 @@ export default {
     text-decoration: none;
   }
   .ind_title {
-  height: 4.3077rem;
-  line-height: 4.3077rem;
-  font-size: 1.8462rem;
-}
+    height: 4.3077rem;
+    line-height: 4.3077rem;
+    font-size: 1.8462rem;
+  }
 }
 .scroll_box {
   // display: flex;

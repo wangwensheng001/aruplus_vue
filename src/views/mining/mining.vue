@@ -4,13 +4,15 @@
       <!-- 头部 -->
       <div class="top_title_box">
         <v-icon color="#fff" @click="back">mdi-arrow-left</v-icon>
-        <span>云挖矿</span>
+        <span>{{ $t("Cloud Mining") }}</span>
         <img src="@/assets/subscribe/1.png" alt="" />
       </div>
       <!-- 总资产折合 -->
       <div class="total_assets_box">
         <div class="total_assets_top">
-          <span>钱包总资产折合(USDT)</span>
+          <span
+            >{{ $t("Mining wallet") }}<span>{{ $t("(USDT)") }}</span></span
+          >
           <img src="@/assets/business/business2.png" alt="" />
         </div>
         <span>--</span>
@@ -19,8 +21,8 @@
     <!-- 下方tab栏 -->
     <div class="bottom_tab">
       <v-tabs grow @change="changeTab">
-        <v-tab href="#1"> 矿机商城 </v-tab>
-        <v-tab href="#2"> 我的矿池 </v-tab>
+        <v-tab href="#1"> {{ $t("Miners Leasing") }} </v-tab>
+        <v-tab href="#2"> {{ $t("My mining pool") }} </v-tab>
       </v-tabs>
     </div>
     <!-- 卡片 -->
@@ -44,14 +46,14 @@
               <div>
                 <span>{{ "+" + 5.1 + "%" }}</span>
               </div>
-              <span>全网收益率(全网算力当天波动)</span>
+              <span>{{ $t("Estimated rate of return") }}</span>
             </div>
             <div class="price_period_right">
               <div>
                 <span>1</span>
-                <span>天</span>
+                <span>{{ $t("Day") }}</span>
               </div>
-              <span>挖矿期限</span>
+              <span>{{ $t("Mining period") }}</span>
             </div>
           </div>
           <!-- 描述 -->
@@ -61,34 +63,34 @@
             </div>
             <div class="describe_right">
               <div>
-                <span>矿机算力：</span>
+                <span>{{ $t("Power") }}：</span>
                 <span>820</span>
                 <span>MH/s,</span>
-                <span>每台</span>
+                <span>{{ $t("Unit") }}</span>
               </div>
               <div>
-                <span>本次租金：</span>
+                <span>{{ $t("Price/UN") }}：</span>
                 <span>300</span>
                 <span>USDT</span>
               </div>
               <div>
-                <span>服务费：</span>
-                <span>{{3+'%'}}</span>
+                <span>{{ $t("Service charge") }}：</span>
+                <span>{{ 3 + "%" }}</span>
               </div>
               <div>
-                <span>预计日产：</span>
+                <span>{{ $t("D/E") }}：</span>
                 <span>0.0148</span>
                 <span>BTC</span>
               </div>
               <div>
-                <span>产出收益率：</span>
+                <span>{{ $t("ROI") }}：</span>
                 <span>1%-5%</span>
               </div>
             </div>
           </div>
           <!-- 按钮 -->
           <div style="padding: 0 8px">
-            <v-btn block large color="primary"> 立即挖矿 </v-btn>
+            <v-btn block large color="primary"> {{ $t("Purchase") }} </v-btn>
           </div>
         </div>
       </v-card>
@@ -275,7 +277,7 @@ export default {
     div {
       position: relative;
       &::after {
-        content: '';
+        content: "";
         display: block;
         position: absolute;
         width: 6px;

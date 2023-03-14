@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {  setToken, removeToken,setUserInfo,removeUserInfo } from '@/utils/auth'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    ereaJson: [
+    areaJson: [
       {
         "country_id": 100006,
         "country_code": 244,
@@ -1350,12 +1351,36 @@ export default new Vuex.Store({
         "country_name_cn": "赞比亚",
         "ab": "ZM"
       }
-    ]
-
+    ],
+    lang: 'zh',
+    token: localStorage.getItem('user_token') || null,
+    user_info: JSON.parse(localStorage.getItem('user_info')) || {}
   },
   getters: {
   },
   mutations: {
+    changeLang(state, payload) {
+      state.lang = payload
+    },
+    // 设置更改token
+    changeToken(state, payload) {
+      state.token = payload
+      setToken(payload)
+    },
+    // 删除token
+    removeToken(state) {
+      state.token = null
+      removeToken()
+    },
+    changeUserInfo(state, payload) {
+      state.user_info = payload
+      setUserInfo(payload)
+    },
+    // 删除用户信息
+    removeUserInfo(state,payload) {
+      state.user_info = payload
+      removeUserInfo()
+    },
   },
   actions: {
   },

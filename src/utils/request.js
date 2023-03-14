@@ -4,11 +4,16 @@ import router from '@/router'
 // import jsonBig from 'json-bigint'
 
 const service = axios.create({
-  baseURL: "https://btc.h.ydrjkj.com/api",
+  baseURL: "https://fxbittrade.pro/api",
   timeout: 10000
 })
 
 service.interceptors.request.use((config) => {
+  console.log(store.state.lang);
+  if (store.state.token) {
+    config.headers.authorization = store.state.token
+  }
+  config.headers.lang = store.state.lang;
   if (config.url.indexOf('?') === -1) {
     config.url = config.url + '?_timespan=' + (new Date()).getTime()
   } else {
@@ -21,19 +26,19 @@ service.interceptors.request.use((config) => {
 }) // 请求拦截器
 
 service.interceptors.response.use((response) => {
-  const { message, success, data } = response.data
-  if (success) {
-    return data
+  console.log(response);
+  const { message, type } = response.data
+  if (type == '999') {
+    router.push('/login')
+  }
+  if (type == 'ok') {
+    return message
   } else {
     // Message.error(message)
-    return Promise.reject(new Error(message))
+    return message
+    // return Promise.reject(new Error(message))
   }
 }, (error) => {
-  // console.log(error.response)
-  // if (response.data.type == '999') {
-    // store.dispatch('user/logout')
-    // router.push('/login')
-  // }
   return Promise.reject(error)
 }) // 响应拦截器
 

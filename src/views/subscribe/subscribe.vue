@@ -4,13 +4,16 @@
       <!-- 头部 -->
       <div class="top_title_box">
         <v-icon color="#fff" @click="back">mdi-arrow-left</v-icon>
-        <span>ICO申购</span>
+        <span>{{ $t("ICO") }}</span>
         <img src="@/assets/subscribe/1.png" alt="" />
       </div>
       <!-- 总资产折合 -->
       <div class="total_assets_box">
         <div class="total_assets_top">
-          <span>总资产折合(USDT)</span>
+          <span
+            >{{ $t("Total assets equivalent")
+            }}<span>{{ $t("(USDT)") }}</span></span
+          >
           <img src="@/assets/business/business2.png" alt="" />
         </div>
         <span>--</span>
@@ -19,9 +22,9 @@
     <!-- 下方tab栏 -->
     <div class="bottom_tab">
       <v-tabs grow @change="changeTab">
-        <v-tab href="#1"> 正在ICO </v-tab>
-        <v-tab href="#2"> 持仓 </v-tab>
-        <v-tab href="#3"> 已结束 </v-tab>
+        <v-tab href="#1"> {{ $t("Listing ICO") }} </v-tab>
+        <v-tab href="#2"> {{ $t("Position") }} </v-tab>
+        <v-tab href="#3"> {{ $t("Finish") }} </v-tab>
       </v-tabs>
     </div>
     <!-- 卡片 -->
@@ -36,8 +39,8 @@
             </div>
             <div>
               <div>
-                <span>火热进行中</span>
-                <span>预计2023-04-20 00:00:00截止</span>
+                <span>{{ $t("Hot in progress") }}</span>
+                <span>{{ $t("Ex2023-04-20 00:00:00Fin") }}</span>
               </div>
               <v-icon color="rgb(25,118,210)"> mdi-alert-circle </v-icon>
             </div>
@@ -60,7 +63,7 @@
               <span>YOIF</span>
             </div>
             <div>
-              <span>进度 </span>
+              <span>{{ $t("FIN") }} </span>
               <span class="color_text"> {{ 70.65 + "%" }}</span>
             </div>
           </div>
@@ -71,19 +74,19 @@
                 <span>0.078581</span>
                 <span>USDT</span>
               </div>
-              <span>招募价格</span>
+              <span>{{ $t("ICO Raising price") }}</span>
             </div>
             <div class="price_period_right">
               <div>
                 <span>42</span>
-                <span>天</span>
+                <span>{{ $t("Day") }}</span>
               </div>
-              <span>预计还剩期限</span>
+              <span>{{ $t("Estimated time remaining") }}</span>
             </div>
           </div>
           <!-- 按钮 -->
           <v-btn block large color="primary">
-            请登录参与
+            {{ $t("Please log in to participate") }}
           </v-btn>
         </div>
       </v-card>
